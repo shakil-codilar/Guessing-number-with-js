@@ -9,17 +9,22 @@ const rl = readline.createInterface({
 
 function askQuestion() {
     rl.question('Please guess your number: ', (guessedNumber) => {
-        if (guessedNumber == randomNumber) {
-            console.log(`Correct! Your Score is : ${score}`);
-            rl.close();
-        } else if (guessedNumber > randomNumber) {
-            console.log(`your input is greater than random number`);
-            score = score - 1;
+        if(0 < guessedNumber &&  guessedNumber > 100) {
+            console.log("please enter a valid number");
             askQuestion();
-        } else {
-            console.log(`your input is lesser than random number`);
-            score = score - 1;
-            askQuestion();
+        } else{
+            if (guessedNumber == randomNumber) {
+                console.log(`Correct! Your Score is : ${score}`);
+                rl.close();
+            } else if (guessedNumber > randomNumber) {
+                console.log(`your input is greater than random number`);
+                score = score - 1;
+                askQuestion();
+            } else {
+                console.log(`your input is lesser than random number`);
+                score = score - 1;
+                askQuestion();
+            }
         }
     });
 }
